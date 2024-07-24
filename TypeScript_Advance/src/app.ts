@@ -91,3 +91,21 @@ let emp2: Employee = {
 };
 emp1.salary = 2000;
 emp2.salary = 3000;
+
+//Array
+const users: string[] = [];
+users.push("John", "Jane", "Jack");
+console.log(users);
+
+const numbers: number[] = [1, 2, 3];
+
+//การเข้าถึงสมาชิกมี 3 แบบ คือ index forloop+length foreach
+// console.log(users[0], users[1], users[2]);
+
+//for (let i:number = 0 ; i<users.length ; i++){
+//   console.log(users[i])
+// }
+
+//user.forEach((user) => {
+//   console.log(user);
+// })
