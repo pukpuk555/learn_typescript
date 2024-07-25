@@ -71,13 +71,64 @@ emp2.salary = 3000;
 //Array
 const users = [];
 users.push("John", "Jane", "Jack");
-console.log(users);
+// console.log(users);
 const numbers = [1, 2, 3];
-//การเข้าถึงสมาชิกมี 3 แบบ คือ index forloop+length foreach
-// console.log(users[0], users[1], users[2]);
-//for (let i:number = 0 ; i<users.length ; i++){
-//   console.log(users[i])
-// }
-//user.forEach((user) => {
-//   console.log(user);
-// })
+const employees = [];
+employees.push({
+    name: "John",
+    salary: 1000,
+    department: "IT",
+});
+employees.push({
+    name: "Jane",
+    salary: 2000,
+    department: "HR",
+});
+function sayHi2(name) {
+    if (!name) {
+        return `Hello World`;
+    }
+    if (typeof name === "string") {
+        return `Hello ${name}`;
+    }
+    throw new Error("Invalid input");
+}
+function total(a, b) {
+    if (typeof a === "number" && typeof b === "number") {
+        return a + b;
+    }
+    if (typeof a === "string" && typeof b === "string") {
+        return (parseInt(a) + parseInt(b)).toString();
+    }
+    throw new Error("Invalid input");
+}
+// console.log(total(100, 200));
+// console.log(total("100", "200"));
+//Spread Operator
+const numbers2 = [1, 2, 3];
+const numbers3 = [4, 5, 6];
+numbers2.push(...numbers3);
+// console.log(numbers2);
+//Rest parameter
+const total2 = (...number) => {
+    return number.reduce((arg, num) => arg + num, 0);
+};
+// console.log(total2(1, 2, 3, 4, 5));
+// console.log(total2(1, 2, 3, 4));
+// console.log(total2(1, 2, 3));
+//destructuring
+const colors = ["แดง", "เขียว", "น้ำเงิน"];
+const [red, green, blue] = colors;
+// const red: string = colors[0];
+// const green: string = colors[1];
+// const blue: string = colors[2];
+// console.log(red, green, blue);
+const person2 = {
+    firstName: "John",
+    age: 30,
+};
+const { firstName, age } = person2;
+const goodStatus = [200, "OK"];
+const badStatus = [400, "Bad Request"];
+const notFoundStatus = [404, "Not Found"];
+const errorStatus = [500, "Internal Server Error"];

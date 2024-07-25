@@ -95,7 +95,7 @@ emp2.salary = 3000;
 //Array
 const users: string[] = [];
 users.push("John", "Jane", "Jack");
-console.log(users);
+// console.log(users);
 
 const numbers: number[] = [1, 2, 3];
 
@@ -109,3 +109,105 @@ const numbers: number[] = [1, 2, 3];
 //user.forEach((user) => {
 //   console.log(user);
 // })
+
+//Array & type aliases
+type Employee2 = {
+  name: string;
+  salary: number;
+  department: string;
+};
+
+const employees: Employee2[] = [];
+employees.push({
+  name: "John",
+  salary: 1000,
+  department: "IT",
+});
+employees.push({
+  name: "Jane",
+  salary: 2000,
+  department: "HR",
+});
+
+// for (let person of employees) {
+//   console.log(person.name, person.salary, person.department);
+// }
+
+//Function Overloading สามารถสร้างฟังชั่นชื่อซ้ำได้
+function sayHi2(): string;
+function sayHi2(name: string): string;
+function sayHi2(name?: string): string {
+  if (!name) {
+    return `Hello World`;
+  }
+  if (typeof name === "string") {
+    return `Hello ${name}`;
+  }
+  throw new Error("Invalid input");
+}
+
+// console.log(sayHi2());
+// console.log(sayHi2("John"));
+// console.log(sayHi2(123)); //error
+
+function total(a: number, b: number): number;
+function total(a: string, b: string): string;
+function total(a: unknown, b: unknown): unknown {
+  if (typeof a === "number" && typeof b === "number") {
+    return a + b;
+  }
+  if (typeof a === "string" && typeof b === "string") {
+    return (parseInt(a) + parseInt(b)).toString();
+  }
+  throw new Error("Invalid input");
+}
+
+// console.log(total(100, 200));
+// console.log(total("100", "200"));
+
+//Spread Operator
+const numbers2: number[] = [1, 2, 3];
+const numbers3: number[] = [4, 5, 6];
+numbers2.push(...numbers3);
+// console.log(numbers2);
+
+//Rest parameter
+const total2 = (...number: number[]) => {
+  return number.reduce((arg, num) => arg + num, 0);
+};
+
+// console.log(total2(1, 2, 3, 4, 5));
+// console.log(total2(1, 2, 3, 4));
+// console.log(total2(1, 2, 3));
+
+//destructuring
+const colors: string[] = ["แดง", "เขียว", "น้ำเงิน"];
+const [red, green, blue] = colors;
+// const red: string = colors[0];
+// const green: string = colors[1];
+// const blue: string = colors[2];
+
+// console.log(red, green, blue);
+
+const person2: { firstName: string; age: number } = {
+  firstName: "John",
+  age: 30,
+};
+
+const { firstName, age } = person2;
+
+// console.log(firstName, age);
+
+//Tuple
+//Tuple คือ ชุดตัวเเปรที่อยู่ในรูปลำดับใช้เก็บค่าข้อมูลให้อยู่ในกลุ่มเดียวกัน คล้ายกับ Array
+//Array มีความยืดหยุ่น แต่ Tuple มีขนาดตายตัว
+//สมาชิกใน Array ต้องเป็นชนิดเดียวกับ แต่ Tuple มีชนิดข้อมูลต่างกันได้ โดยจะต้องระบุชนิดข้อมูลกำกับ
+
+//const goodStatus: [code: number, status: string] = [200, "OK"];
+
+//Type Tuple
+type HttpStatusCode = [number, string];
+const goodStatus: HttpStatusCode = [200, "OK"];
+const badStatus: HttpStatusCode = [400, "Bad Request"];
+const notFoundStatus: HttpStatusCode = [404, "Not Found"];
+const errorStatus: HttpStatusCode = [500, "Internal Server Error"];
